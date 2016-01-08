@@ -1,8 +1,6 @@
-package com.infosupport.selenium;
+package com.infosupport.selenium.classic;
 
-import org.hamcrest.CoreMatchers;
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -10,7 +8,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -18,7 +15,7 @@ import java.util.stream.Stream;
 import static org.hamcrest.CoreMatchers.hasItem;
 import static org.junit.Assert.assertThat;
 
-public class SeleniumTest {
+public class SeleniumClassicTest {
     WebDriver driver;
 
     @Before
@@ -29,14 +26,11 @@ public class SeleniumTest {
 
     @Test
     public void googleSuggestionsForInfoSupport() {
-        // googleSuggestPage.navigate();
         driver.get("https://www.google.nl/?gfe_rd=cr&ei=wGmPVqThC8b8cdTGv9gG&gws_rd=ssl");
 
-        // suggestPage.enterQueryString("Info Su");
         WebElement query = driver.findElement(By.name("q"));
         query.sendKeys("Info Su");
 
-        // suggestPage.waitForSuggestionsDiv();
         long end = System.currentTimeMillis() + 5000;
         while (System.currentTimeMillis() < end) {
             WebElement resultsDiv = driver.findElement(By.className("sbsb_a"));
