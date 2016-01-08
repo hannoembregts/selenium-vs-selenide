@@ -1,6 +1,8 @@
 package com.infosupport.selenium;
 
+import org.hamcrest.CoreMatchers;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -8,13 +10,20 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import static org.hamcrest.CoreMatchers.hasItem;
+import static org.junit.Assert.assertThat;
 
 public class SeleniumTest {
     WebDriver driver;
 
     @Before
     public void setUp() {
+        System.setProperty("webdriver.chrome.driver", "C:\\development\\tools\\selenium-webdrivers\\chromedriver.exe");
         driver = new ChromeDriver();
     }
 
@@ -38,9 +47,10 @@ public class SeleniumTest {
         }
 
         List<WebElement> allSuggestions = driver.findElements(By.className("sbsb_b"));
-        for (WebElement suggestion: allSuggestions) {
-            System.out.println(suggestion.getText());
-        }
+        List<String> allSuggestionTexts = allSuggestions.stream().map(WebElement::getText)
+                .flatMap(suggestions -> Stream.of(suggestions.split("\n"))).collect(Collectors.toList());
+
+        assertThat(allSuggestionTexts, hasItem("info support"));
     }
 
     @After
