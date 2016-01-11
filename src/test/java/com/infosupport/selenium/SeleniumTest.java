@@ -1,4 +1,4 @@
-package com.infosupport.selenium.classic;
+package com.infosupport.selenium;
 
 import org.junit.After;
 import org.junit.Before;
@@ -15,7 +15,7 @@ import java.util.stream.Stream;
 import static org.hamcrest.CoreMatchers.hasItem;
 import static org.junit.Assert.assertThat;
 
-public class SeleniumClassicTest {
+public class SeleniumTest {
     WebDriver driver;
 
     @Before
@@ -31,7 +31,7 @@ public class SeleniumClassicTest {
         WebElement query = driver.findElement(By.name("q"));
         query.sendKeys("Info Su");
 
-        long end = System.currentTimeMillis() + 5000;
+        long end = System.currentTimeMillis() + 4000;
         while (System.currentTimeMillis() < end) {
             WebElement resultsDiv = driver.findElement(By.className("sbsb_a"));
 

@@ -1,4 +1,4 @@
-package com.infosupport.selenide.classic;
+package com.infosupport.selenide;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -7,7 +7,7 @@ import org.openqa.selenium.By;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Condition.*;
 
-public class SelenideClassicTest {
+public class SelenideTest {
     @Before
     public void setUp() {
         System.setProperty("webdriver.chrome.driver", "C:\\development\\tools\\selenium-webdrivers\\chromedriver.exe");
